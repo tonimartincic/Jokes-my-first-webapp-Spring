@@ -1,0 +1,104 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Vicevi</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    
+    <style>
+    	h1 { 
+    		color:#002259; 
+    		display: block;
+		    font-size: 3em;
+		    margin-top: 0.3em;
+		    margin-bottom: 0.3em;
+		    margin-left: 0;
+		    margin-right: 0;
+		    font-weight: bold;
+		    font-family:verdana;
+		}
+    
+    	body {
+    		background-color: #b2b9ff;
+    	}
+    	
+    	table {
+    		 background-color: #8992f4;
+   			 border-collapse: collapse;
+   			 border: 1px solid black;
+   			 table-layout: fixed; 
+   			 font-size: 20px;
+		}
+
+		td, th {
+   			 border: 1px solid black;
+   			 padding: 6px;
+		}
+		
+		table#table1 {
+   			 width:70%; 
+    	     margin-left:15%; 
+   			 margin-right:15%;
+  		}
+  		
+  		.button {
+		    border: none;
+		    color: white;
+		    padding: 10px 20px;
+		    text-align: center;
+		    text-decoration: none;
+		    display: inline-block;
+		    font-size: 16px;
+		    margin: 2px 1px;
+		    cursor: pointer;
+		    border-radius: 10px;
+		}
+		
+		.button1 { 
+    		background-color: #c40000; 
+		}
+		
+		.button2 { 
+    		background-color: #234893;  
+		}
+    </style>
+</head>
+
+<body>
+	<h1 align="center">Vicevi</h1>
+	
+	 <table id="table1">
+  		<thead>
+       		<tr bgcolor="#2b2bc6">
+     			 <th style="width:5%; height:30px;" th:text="'#'"></th>
+     			 <th style="width:51%; text-align: left;" th:text="'Vic'"></th>
+     			 <th style="width:15%;" th:text="'Likes'"></th>
+     			 <th style="width:15%;" th:text="'Dislikes'"></th>
+     			 <th style="width:15%;" th:text="'Razlika'"></th>
+    		</tr>
+  		</thead>
+  		<tbody>
+   			 <tr th:each="joke, iterStat: ${allJokes}">
+   			 	<td align="center" th:text="${iterStat.index + 1} + '.'"></td>
+      			<td style="white-space:pre-wrap; 
+      			           word-wrap:break-word;      			       
+      			           min-height:30px;" 
+      			           th:text="${joke.content}">
+      			</td>
+      			<td style="text-align: right;" th:text="${joke.likes}"></td>
+      			<td style="text-align: right;" th:text="${joke.dislikes}"></td>
+      			<td style="text-align: right;" th:text="${joke.likes - joke.dislikes}"></td>
+      			<td>
+      				<button type="button" class="button button2" th:onclick="'location.href=\'/like?id=' + ${joke.id} + '\''" value="Submit">Like</button>
+      				<button type="button" class="button button1" th:onclick="'location.href=\'/dislike?id=' + ${joke.id} + '\''" value="Submit">Dislike</button>
+      			</td>
+   			 </tr>
+  		</tbody>
+	</table>
+	
+	<p align="center">
+		<button type="button" class="button button2" onclick="location.href='/new'" value="Submit">Dodavanje vica</button>
+    	<button type="button" class="button button2" onclick="location.href='/addExamples'" value="Submit">Dodaj viceve navedene u zadatku</button>
+    </p>
+</body>
+</html>

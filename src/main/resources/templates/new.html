@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Dodavanje vica</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    
+    <style type="text/css">
+    	body {
+    		background-color: #b2b9ff;
+    	}
+    
+    	.button {
+		    border: none;
+		    color: white;
+		    padding: 10px 20px;
+		    text-align: center;
+		    text-decoration: none;
+		    display: inline-block;
+		    font-size: 16px;
+		    margin: 2px 1px;
+		    cursor: pointer;
+		    border-radius: 10px;
+		}
+		
+		.button1 { 
+    		background-color: #c40000; 
+		}
+		
+		.button2 { 
+    		background-color: #234893;  
+		}
+    
+    </style>
+</head>
+<body>
+	<h1>Dodavanje vica</h1>
+    <form action="#" th:action="@{/new}" th:object="${joke}" method="post" id="jokeForm">    
+        <textarea placeholder="Upišite vic ovdje..." rows="10" cols="80" th:field="*{content}" form="jokeForm"></textarea>
+        
+        <p><input type="submit" value="Dodaj vic" /> <input type="reset" value="Izbriši"/></p>
+    </form>
+    <button type="button" class="button button2" onclick="location.href='/'" value="Submit">Pogledajte sve viceve</button>
+</body>
+</html>
